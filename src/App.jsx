@@ -16,7 +16,7 @@ function App() {
     <div className="max-w-4xl mx-auto mt-10">
       <h1 className="text-3xl font-bold mb-6 text-center">📚 Bookstore</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {books.map(book => (
+        {Array.isArray(books) && books.map(book => (
           <div key={book.id} className="bg-white p-4 rounded-xl shadow">
             <h2 className="text-xl font-semibold">{book.title}</h2>
             <p className="text-gray-600">👤 {book.author}</p>
