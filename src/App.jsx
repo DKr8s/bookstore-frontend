@@ -5,12 +5,16 @@ const API_URL = import.meta.env.VITE_API_URL
 function App() {
   const [books, setBooks] = useState([])
 
-  useEffect(() => {
-    fetch(`${API_URL}/books`)
-      .then(res => res.json())
-      .then(setBooks)
-      .catch(console.error)
-  }, [])
+useEffect(() => {
+  fetch(import.meta.env.VITE_API_URL + "/books")
+    .then(res => res.json())
+    .then(data => {
+      const books = typeof data === "string" ? JSON.parse(data) : data;
+      setBooks(books);
+    })
+    .catch(err => console.error("❌ Fetch error:", err));
+}, []);
+
 
   return (
     <div className="max-w-4xl mx-auto mt-10">
